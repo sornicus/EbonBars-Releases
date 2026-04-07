@@ -4,7 +4,7 @@
 
 EbonBars automatically saves and restores your action bar layouts across character resets — so every reroll starts with your bars already set up.
 
-**Version:** 0.4.0  
+**Version:** 0.4.1  
 **Compatible:** WoW 3.3.5a (Wrath of the Lich King)  
 **Server:** Ebonhold
 
@@ -50,12 +50,22 @@ Save separate bar setups for each talent spec. When you switch specs via the tal
 /eb status                — show saved layout info
 /eb specstatus            — show active spec slot and saved spec layouts
 /eb diagnose all          — slot-by-slot bar analysis
-/eb bugreport             — generate a diagnostic snapshot
+/eb bugreport             — open copyable diagnostic report (Ctrl+A, Ctrl+C to copy)
 ```
 
 ---
 
+## Reporting Bugs
+
+Type `/eb bugreport` in-game. A window will appear with a full diagnostic snapshot — hit **Ctrl+A** then **Ctrl+C** to copy it, and paste it with your bug report.
+
+---
+
 ## Changelog
+
+### 0.4.1
+- **Copyable bug report** — `/eb bugreport` now opens a scrollable in-game popup instead of printing to chat. Select all and copy with Ctrl+A / Ctrl+C.
+- **Version string fix** — addon version now reads from the TOC file instead of being hardcoded.
 
 ### 0.4.0
 - **Spec detection rewritten** — now uses `SpecDropdownFrameText` matched against `SpecCustomNames` to reliably identify the active spec slot via the talent UI dropdown. Previous hook targeted the wrong UI element.
@@ -76,4 +86,3 @@ Save separate bar setups for each talent spec. When you switch specs via the tal
 
 - WoW 3.3.5a (Interface 30300)
 - Bartender4, Dominos, or default Blizzard UI
-
