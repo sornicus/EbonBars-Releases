@@ -4,7 +4,7 @@
 
 EbonBars automatically saves and restores your action bar layouts across character resets — so every reroll starts with your bars already set up.
 
-**Version:** 0.4.1  
+**Version:** 0.4.2  
 **Compatible:** WoW 3.3.5a (Wrath of the Lich King)  
 **Server:** Ebonhold
 
@@ -51,6 +51,7 @@ Save separate bar setups for each talent spec. When you switch specs via the tal
 /eb specstatus            — show active spec slot and saved spec layouts
 /eb diagnose all          — slot-by-slot bar analysis
 /eb bugreport             — open copyable diagnostic report (Ctrl+A, Ctrl+C to copy)
+/eb resetstate            — reset all flags and settings, preserve your layouts
 ```
 
 ---
@@ -62,6 +63,13 @@ Type `/eb bugreport` in-game. A window will appear with a full diagnostic snapsh
 ---
 
 ## Changelog
+
+### 0.4.2
+- **`/eb resetstate`** — new command that resets all flags and settings to defaults while preserving your saved layouts. Use this if the addon gets into a bad state before filing a bug report.
+- **Layout changed popup redesigned** — now shows which layout changed by name (e.g. "Your Retribution layout has changed."). Buttons are now **Update Layout** and **Revert to Saved** — both do exactly what they say. Revert immediately restores your saved layout rather than leaving bars in an ambiguous state.
+- **Full session logging** — debug log and event trace now capture all activity regardless of verbosity setting, so bug reports contain a complete picture even without debug mode enabled.
+- **Bug report enhanced** — captures full DB state, init flags, spec layout counts, account-wide settings, and 50 log/event entries (up from 20).
+- **SavedVariables cleanup** — stale event log data from debug sessions is cleared on load, keeping the SavedVariables file lean.
 
 ### 0.4.1
 - **Copyable bug report** — `/eb bugreport` now opens a scrollable in-game popup instead of printing to chat. Select all and copy with Ctrl+A / Ctrl+C.
