@@ -4,7 +4,7 @@
 
 EbonBars automatically saves and restores your action bar layouts across character resets — so every reroll starts with your bars already set up.
 
-**Version:** 0.4.2  
+**Version:** 0.4.3  
 **Compatible:** WoW 3.3.5a (Wrath of the Lich King)  
 **Server:** Ebonhold
 
@@ -63,6 +63,11 @@ Type `/eb bugreport` in-game. A window will appear with a full diagnostic snapsh
 ---
 
 ## Changelog
+
+### 0.4.3
+- **In-session reset popup fix** — the "layout changed" popup no longer fires at level 1 immediately after a Self Terminate / roguelike reset mid-session. Root cause: `atMaxLevel` was not cleared when the reset was detected in-session, causing the next `ACTIONBAR_SLOT_CHANGED` event (bars wiped by reset) to trigger the popup incorrectly. Relogging previously worked around this since runtime rebuilds from scratch on login.
+- **Max level save popup fix** — fresh characters who level to 80 mid-session now correctly receive the prompt to save their layout. Previously only showed at login.
+- **Bug report** — `Ready To Track Changes` runtime flag now included in the diagnostic snapshot.
 
 ### 0.4.2
 - **`/eb resetstate`** — new command that resets all flags and settings to defaults while preserving your saved layouts. Use this if the addon gets into a bad state before filing a bug report.
