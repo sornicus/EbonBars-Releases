@@ -4,7 +4,7 @@
 
 EbonBars automatically saves and restores your action bar layouts across character resets — so every reroll starts with your bars already set up.
 
-**Version:** 0.4.5  
+**Version:** 0.4.6  
 **Compatible:** WoW 3.3.5a (Wrath of the Lich King)  
 **Server:** Ebonhold
 
@@ -63,6 +63,9 @@ Type `/eb bugreport` in-game. A window will appear with a full diagnostic snapsh
 ---
 
 ## Changelog
+
+### 0.4.6
+- **Leveling layout restore fix** — bars now correctly fill in during post-reset leveling. Root cause: the leveling layout (used as the correction reference while re-leveling) could be auto-snapshotted from a disorganized bar state at level 80 if `atMaxLevel` was not set correctly in older versions. This left the leveling reference out of sync with the player's actual organized layout. Fix: whenever `/eb save force` is run at max level, the leveling layout is now synced from `savedLayout` automatically. **Existing affected characters:** reach level 80, run `/eb save force` once, and future resets will restore correctly.
 
 ### 0.4.5
 - **Spec switch popup fix** — the "layout changed" popup no longer fires after switching specs. Two root causes fixed: (1) the change-detection baseline snapshot was taken at correction time, before a 1.5s settle window — server-side spell placements during that window left the snapshot stale; snapshot is now taken at arm time. (2) The change comparison checked all 120 slots — server auto-places newly-learned talent spells into unmanaged slots on spec switch, triggering false positives; comparison now scopes to saved-layout managed slots only.
