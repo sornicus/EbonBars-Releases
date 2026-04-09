@@ -4,7 +4,7 @@
 
 EbonBars automatically saves and restores your action bar layouts across character resets — so every reroll starts with your bars already set up.
 
-**Version:** 0.4.3  
+**Version:** 0.4.5  
 **Compatible:** WoW 3.3.5a (Wrath of the Lich King)  
 **Server:** Ebonhold
 
@@ -63,6 +63,12 @@ Type `/eb bugreport` in-game. A window will appear with a full diagnostic snapsh
 ---
 
 ## Changelog
+
+### 0.4.5
+- **Spec switch popup fix** — the "layout changed" popup no longer fires after switching specs. Two root causes fixed: (1) the change-detection baseline snapshot was taken at correction time, before a 1.5s settle window — server-side spell placements during that window left the snapshot stale; snapshot is now taken at arm time. (2) The change comparison checked all 120 slots — server auto-places newly-learned talent spells into unmanaged slots on spec switch, triggering false positives; comparison now scopes to saved-layout managed slots only.
+
+### 0.4.4
+- **Max level in-session fix** — `atMaxLevel` is now correctly set when reaching max level via `PLAYER_LEVEL_UP`, not just on login. Previously, a player who reset mid-session and re-leveled to 80 without relogging would stay in a "not at max level" state — suppressing the spec-switch no-layout popup and change detection. A relog was the workaround; it no longer is.
 
 ### 0.4.3
 - **In-session reset popup fix** — the "layout changed" popup no longer fires at level 1 immediately after a Self Terminate / roguelike reset mid-session. Root cause: `atMaxLevel` was not cleared when the reset was detected in-session, causing the next `ACTIONBAR_SLOT_CHANGED` event (bars wiped by reset) to trigger the popup incorrectly. Relogging previously worked around this since runtime rebuilds from scratch on login.
