@@ -4,7 +4,7 @@
 
 EbonBars automatically saves and restores your action bar layouts across character resets — so every reroll starts with your bars already set up.
 
-**Version:** 0.4.6  
+**Version:** 0.4.7  
 **Compatible:** WoW 3.3.5a (Wrath of the Lich King)  
 **Server:** Ebonhold
 
@@ -63,6 +63,9 @@ Type `/eb bugreport` in-game. A window will appear with a full diagnostic snapsh
 ---
 
 ## Changelog
+
+### 0.4.7
+- **Leveling layout sync fix (root cause)** — eliminated the two-table sync problem between `levelingLayout` and `savedLayout`. `savedLayout` is now always the correction reference at all levels. During post-reset leveling the correction pass already skips unlearned spells, so bars restore to saved positions as spells are learned — no separate leveling snapshot needed. This resolves all variants of the "wrong bars after reset" issue without heuristics or migration logic. No user action required.
 
 ### 0.4.6
 - **Leveling layout restore fix** — bars now correctly fill in during post-reset leveling. Root cause: the leveling layout (used as the correction reference while re-leveling) could be auto-snapshotted from a disorganized bar state at level 80 if `atMaxLevel` was not set correctly in older versions. This left the leveling reference out of sync with the player's actual organized layout. Fix: whenever `/eb save force` is run at max level, the leveling layout is now synced from `savedLayout` automatically. **Existing affected characters:** reach level 80, run `/eb save force` once, and future resets will restore correctly.
