@@ -1,5 +1,10 @@
 # EbonBars
 
+> ## ⚠️ Deprecated — no longer needed
+> The Ebonhold server now saves and restores action bar layouts across character resets **natively**, so EbonBars is no longer required. This repository is **archived** and kept online for reference only — it is no longer maintained and will receive no further updates.
+>
+> Thanks to everyone who used it. 🖤
+
 **Roguelike Hotbar Manager for Ebonhold Server**
 
 EbonBars automatically saves and restores your action bar layouts across character resets — so every reroll starts with your bars already set up.
